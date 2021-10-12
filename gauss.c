@@ -6,7 +6,7 @@ double before_x1, before_x2, before_x3; //一つ前の変数値
 double error1, error2, error3; //一つ前の変数値との誤差
 int roop; //ループカウント用変数
 
-double get_x1(double x2, double x3){
+double get_x1(double x2, double x3){ //計算
     return((10.0 - x2 -x3) / 5.0);
 }
 
