@@ -1,18 +1,20 @@
+//ogawaのコードを参考に作成
 #include <stdio.h>
 #include <math.h>
 
 double delta, x, next_x, a;
 int n;
 
-#define eps 0.001
-#define n_max 100
+#define eps 0.000001 //
+#define n_max 100 //最大実行回数
 
 double f(double x){
-    return x + cos(x);
+    return x*x*x -3*x*x +9*x -8;
 }
 
 double df(double x){
-    return 1 - sin(x);
+    double h = 0.000001;
+	return (f(x+h)-f(x))/h;
 }
 
 double newton(double x_n){
@@ -20,9 +22,9 @@ double newton(double x_n){
     x = x_n;
     printf("%f\n", x);
     do{
-    delta = (-1 * f(x_n)) / df(x_n);
-    next_x = x + delta;
-    x = next_x;
+    delta = (-1 * f(x)) / df(x);
+    x += delta;
+    printf("%3d x=%lf\n", n, x);
     n++;
     }
     while((fabs(delta) > eps) && (n <= n_max));
@@ -30,7 +32,6 @@ double newton(double x_n){
 }
 
 int main(){
-    a = newton(-4);
-    printf("%3d:[%f]\n", n, a);
+    a = newton(10);
     return 0;
 }
